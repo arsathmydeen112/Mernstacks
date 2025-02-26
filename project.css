@@ -1,0 +1,258 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #007BFF, #00BFFF); /* Gradient background */
+    color: #333;
+    min-height: 100vh;
+  }
+  
+  /* Navigation Bar */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    padding: 10px 20px;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  nav .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007BFF;
+  }
+  
+  nav .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav .nav-links li {
+    margin-left: 20px;
+  }
+  
+  nav .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  nav .nav-links a:hover {
+    color: #007BFF;
+  }
+  
+  nav .nav-links a.login-btn,
+  nav .nav-links a.signup-btn {
+    padding: 8px 16px;
+    border-radius: 5px;
+  }
+  
+  nav .nav-links a.login-btn {
+    background-color: #555;
+  }
+  
+  nav .nav-links a.signup-btn {
+    background-color: #007BFF;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 100px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #007BFF;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #555;
+  }
+  
+  .hero .cta-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .hero .cta-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Report Issue Section */
+  .report-issue {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .report-issue form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  .report-issue label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #007BFF;
+  }
+  
+  .report-issue input,
+  .report-issue select,
+  .report-issue textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .report-issue button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .report-issue button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Track Issue Section */
+  .track-issue {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .track-issue form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  .track-issue label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #007BFF;
+  }
+  
+  .track-issue input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .track-issue button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .track-issue button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal-content .close {
+    float: right;
+    cursor: pointer;
+    font-size: 24px;
+    color: #007BFF;
+  }
+  
+  .modal-content form {
+    text-align: left;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #007BFF;
+  }
+  
+  .modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .modal-content button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-content button:hover {
+    background-color: #0056b3;
+  }

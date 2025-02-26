@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Issue Reporting App</title>
+  <style>
+    /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #007BFF, #00BFFF); /* Gradient background */
+    color: #333;
+    min-height: 100vh;
+  }
+  
+  /* Navigation Bar */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    padding: 10px 20px;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  nav .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007BFF;
+  }
+  
+  nav .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav .nav-links li {
+    margin-left: 20px;
+  }
+  
+  nav .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  nav .nav-links a:hover {
+    color: #007BFF;
+  }
+  
+  nav .nav-links a.login-btn,
+  nav .nav-links a.signup-btn {
+    padding: 8px 16px;
+    border-radius: 5px;
+  }
+  
+  nav .nav-links a.login-btn {
+    background-color: #555;
+  }
+  
+  nav .nav-links a.signup-btn {
+    background-color: #007BFF;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 100px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #007BFF;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #555;
+  }
+  
+  .hero .cta-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .hero .cta-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Report Issue Section */
+  .report-issue {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .report-issue form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  .report-issue label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #007BFF;
+  }
+  
+  .report-issue input,
+  .report-issue select,
+  .report-issue textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .report-issue button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .report-issue button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Track Issue Section */
+  .track-issue {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .track-issue form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
+  .track-issue label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #007BFF;
+  }
+  
+  .track-issue input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .track-issue button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .track-issue button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal-content .close {
+    float: right;
+    cursor: pointer;
+    font-size: 24px;
+    color: #007BFF;
+  }
+  
+  .modal-content form {
+    text-align: left;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #007BFF;
+  }
+  
+  .modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .modal-content button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-content button:hover {
+    background-color: #0056b3;
+  }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo">Issue Reporter</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#report">Report Issue</a></li>
+      <li><a href="#track">Track Issue</a></li>
+      <li><a href="#login" class="login-btn">Login</a></li>
+      <li><a href="#signup" class="signup-btn">Sign Up</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1>Report Local Issues</h1>
+    <p>Help make your community better by reporting issues like potholes, broken streetlights, and more.</p>
+    <a href="#report" class="cta-btn">Report an Issue</a>
+  </section>
+
+  <!-- Report Issue Section -->
+  <section id="report" class="report-issue">
+    <h2>Report an Issue</h2>
+    <form>
+      <label for="issue-type">Issue Type:</label>
+      <select id="issue-type" name="issue-type">
+        <option value="pothole">Pothole</option>
+        <option value="streetlight">Broken Streetlight</option>
+        <option value="graffiti">Graffiti</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" placeholder="Enter location">
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" placeholder="Describe the issue"></textarea>
+
+      <button type="submit">Submit Report</button>
+    </form>
+  </section>
+
+  <!-- Track Issue Section -->
+  <section id="track" class="track-issue">
+    <h2>Track Your Reported Issues</h2>
+    <p>Enter your report ID to track the status of your issue.</p>
+    <form>
+      <label for="report-id">Report ID:</label>
+      <input type="text" id="report-id" name="report-id" placeholder="Enter your report ID">
+      <button type="submit">Track</button>
+    </form>
+  </section>
+
+  <!-- Login Modal -->
+  <div id="login" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Login</h2>
+      <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div id="signup" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Sign Up</h2>
+      <form>
+        <label for="fullname">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+
+        <label for="new-password">Password:</label>
+        <input type="password" id="new-password" name="new-password" placeholder="Create a password">
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Open and close modals
+const loginModal = document.getElementById('login');
+const signupModal = document.getElementById('signup');
+const loginBtn = document.querySelector('.login-btn');
+const signupBtn = document.querySelector('.signup-btn');
+const closeBtns = document.querySelectorAll('.close');
+
+loginBtn.addEventListener('click', () => {
+  loginModal.style.display = 'flex';
+});
+
+signupBtn.addEventListener('click', () => {
+  signupModal.style.display = 'flex';
+});
+
+closeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    loginModal.style.display = 'none';
+    signupModal.style.display = 'none';
+  });
+});
+
+// Close modal when clicking outside
+window.addEventListener('click', (event) => {
+  if (event.target === loginModal) {
+    loginModal.style.display = 'none';
+  }
+  if (event.target === signupModal) {
+    signupModal.style.display = 'none';
+  }
+});
+  </script>
+</body>
+</html>
